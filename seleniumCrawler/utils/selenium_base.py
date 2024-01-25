@@ -40,6 +40,7 @@ class WebDriverUtility:
     @classmethod
     def wait_element_loading(cls, tag_name: str, element: str) -> bool:
         """엘리먼트의 로딩 대기
+        함수는 반환값이 있지만 꼭 인스턴스를 사용하지 않아도 됨.
         :param tag_name: 로딩을 기다릴 엘리먼트의 태그명 입력
         :param element: 로딩을 기다릴 엘리먼트 입력
         :return: bool
@@ -127,10 +128,15 @@ class WebDriverUtility:
         :return: 구분자를 포함한 문자열
         """
         link = element.get_attribute('href')
-        tokend_link = f'[CLS]{link}[SEP]'
-        return tokend_link
-    def __del__(self):
-        WebDriverUtility.driver.quit()
+        tokened_link = f'[CLS]{link}[SEP]'
+        return tokened_link
 
 
+    @classmethod
+    def quit_driver(cls):
+        """
+        dirver 종료
+        :return:
+        """
+        cls.driver.quit()
 
