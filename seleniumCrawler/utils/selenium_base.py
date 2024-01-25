@@ -97,7 +97,40 @@ class WebDriverUtility:
         else:
             target_elements = parent_element.find_elements(by=cls.tag2ref[tag_name], value=element)
         return target_elements
+
+    @classmethod
+    def get_url(cls):
+        """
+        현재 URL Return
+        :return:
+        """
+        return WebDriverUtility.driver.current_url
+
+    @classmethod
+    def switch_window(cls, page_number: int):
+        WebDriverUtility.driver.switch_to.window(WebDriverUtility.driver.window_handles[page_number])
+
+    @classmethod
+    def window_open(cls, element):
+        WebDriverUtility.driver.execute_script("window.open(arguments[0]);", element.get_attribute('href'))
+        cls.switch_window(1)
+
+    @classmethod
+    def window_close(cls):
+        WebDriverUtility.driver.close()
+        cls.switch_window(0)
+
+    @classmethod
+    def link_tokenizing(cls, element):
+        """ 링크 추출 -> 구분자 생성
+        :param element: 링크를 추출할 엘리먼트
+        :return: 구분자를 포함한 문자열
+        """
+        link = element.get_attribute('href')
+        tokend_link = f'[CLS]{link}[SEP]'
+        return tokend_link
     def __del__(self):
         WebDriverUtility.driver.quit()
+
 
 
