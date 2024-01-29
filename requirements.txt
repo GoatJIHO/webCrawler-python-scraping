@@ -2,3 +2,9 @@ webdriver_manager
 selenium
 re
 mysql-connector-python
+
+pandas
+
+
+
+
