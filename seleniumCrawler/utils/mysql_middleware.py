@@ -53,10 +53,10 @@ class MysqlConnectionPool:
         try:
             with connection_object.cursor() as cur:
                 cur.execute(sql, insert_data)
-                connection_object.commit()
+            connection_object.commit()
             return 1
 
-        except connection_object.Error as e:
+        except Error as e:
             print("Error: ", e)  #logging 으로 바꿀 것
             return 0
 
