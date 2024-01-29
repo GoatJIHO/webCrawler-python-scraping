@@ -1,4 +1,4 @@
 webdriver_manager
 selenium
 re
-mysql
+mysql-connector-python
